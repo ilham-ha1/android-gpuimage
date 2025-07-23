@@ -35,20 +35,19 @@ android {
     }
 }
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'com.github.ilham-ha1'
-            artifactId = 'android-gpuimage'
-            version = VERSION_NAME
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = 'com.github.ilham-ha1'
+                artifactId = 'android-gpuimage'
+                version = VERSION_NAME
 
-            afterEvaluate {
-                from components.release
+                from components.findByName("release") ?: components.findByName("default")
             }
         }
     }
 }
-
 
 ext {
     bintrayRepo = 'maven'
